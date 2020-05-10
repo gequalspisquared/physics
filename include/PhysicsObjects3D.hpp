@@ -9,7 +9,6 @@ class PARTICLE
 public:
     double m, r;
     vec3d s, v, a;
-    int id;
 
     vec3d p() 
     {
@@ -26,12 +25,11 @@ public:
     {
         m = r = 1;
         s = v = a = vec3d(0, 0, 0);
-        id = 0;
     }
 
-    PARTICLE(double mass, double rad, vec3d pos, vec3d vel, vec3d acc, int index)
+    PARTICLE(double mass, double rad, vec3d pos, vec3d vel, vec3d acc)
     {
-        m = mass; r = rad; s = pos; v = vel; a = acc; id = index;
+        m = mass; r = rad; s = pos; v = vel; a = acc;
     }
 
     ~PARTICLE() {}
