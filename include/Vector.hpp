@@ -1,8 +1,4 @@
-/*
-Simple vector library, could always be expanded upon
-Created by Nick Crane 
-*/
-
+/* dickin around with vectors */
 #pragma once
 #include <math.h>
 
@@ -50,4 +46,9 @@ struct vec3d
     // inline double operator*(const vec3d& other) {return i * other.i + j * other.j + k * other.k;}
     inline double mag() {return sqrt(i*i + j*j + k*k);}
     inline double mag2() {return i*i + j*j + k*k;}
+};
+
+struct vec3dint
+{
+    int i, j, k;
 };

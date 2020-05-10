@@ -4,12 +4,12 @@
 #include <future>
 #include <vector>
 
-// basic particle structure used by other classes
 class PARTICLE 
 {
 public:
     double m, r;
     vec3d s, v, a;
+    int id;
 
     vec3d p() 
     {
@@ -26,23 +26,22 @@ public:
     {
         m = r = 1;
         s = v = a = vec3d(0, 0, 0);
+        id = 0;
     }
 
-    PARTICLE(double mass, double rad, vec3d pos, vec3d vel, vec3d acc)
+    PARTICLE(double mass, double rad, vec3d pos, vec3d vel, vec3d acc, int index)
     {
-        m = mass; r = rad; s = pos; v = vel; a = acc;
+        m = mass; r = rad; s = pos; v = vel; a = acc; id = index;
     }
 
     ~PARTICLE() {}
 };
 
-// used for simulations of celestial bodies
 class BODY : public PARTICLE 
 {
     double mu = univG * m;
 };
 
-// used for electrodynamics // need to add something for magnetism?
 class CHARGEDPARTICLE : public PARTICLE
 {
     double q;
@@ -60,4 +59,4 @@ class CHARGEDPARTICLE : public PARTICLE
 
 };
 
-std::vector<std::future<void>> p_Futures;
+// std::vector<std::future<void>> p_Futures;
