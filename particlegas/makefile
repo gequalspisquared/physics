@@ -1,0 +1,2 @@
+particlegas3D: particlegas3D.cpp particlegas3Dkinematics.cpp particlegas3Dpartitioning.cpp particlegas3Dinfo.cpp
+	g++ particlegas3D.cpp particlegas3Dkinematics.cpp particlegas3Dpartitioning.cpp particlegas3Dinfo.cpp -o particlegas3D
