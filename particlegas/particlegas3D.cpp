@@ -58,7 +58,7 @@ int main()
             mass, radius, 
             vec3d(RANDOM * L - L / 2, RANDOM * L - L / 2, RANDOM * L - L / 2),
             vec3d((2 * RANDOM - 1) * initialv, (2 * RANDOM - 1) * initialv, (2 * RANDOM - 1) * initialv),
-            vec3d(0, 0, 0), i);
+            vec3d(0, 0, 0) );
     }
 
     while (true)
