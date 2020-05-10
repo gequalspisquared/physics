@@ -17,7 +17,7 @@ Can be changed to include gravity
 #define RUNANIM 1 // used to determine whether to run anim or not
 #define RANDOM (double)rand()/RAND_MAX // used for initial conditions
 
-// const global paramters
+/* const global paramters */
 const int N = 1000;
 const int L = 100;
 const int numZone = 9;
@@ -25,16 +25,16 @@ const float dt = 0.01f;
 
 int main() 
 {
-    // parameters
+    /* parameters */
     static const double r1 = 1; // critical distance where force is 0
     int ticksPerInfoUpdate = 100;
     int ticksPerFrame = 10;
 
-    // particle properties
+    /* particle properties */
     double mass = 1, radius = 1;
     double initialv = 1;
 
-    // derived quantities (do not touch)
+    /* derived quantities (do not touch) */
     static const double r2 = r1 * r1;
     static const double r6 = r2 * r2 * r2;
     static const double r7 = r6 * r1;
@@ -44,7 +44,7 @@ int main()
     static const double r14 = r13 * r1;
     static const int BoxesPerSide = 1;
 
-    // variables used by program (do not touch)
+    /* variables used by program (do not touch) */
     double momentum = 0, potential = 0;
     float time = 0.0f;
     int tick = 0;
@@ -69,7 +69,7 @@ int main()
         //     p_Futures.push_back(std::async(std::launch::async, UpdateParticleVelocities, particles, i, N, dt, r8, r14));
         // }
         
-        // leapfrog algorithm
+        /* leapfrog algorithm */
         UpdateParticlePositions(particles);
         UpdateParticleVelocities(particles, r8, r14);
         UpdateParticlePositions(particles);

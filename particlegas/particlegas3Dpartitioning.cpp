@@ -12,7 +12,7 @@ Of each particle in the simulation
 
 
 
-// returns zone particle is in
+/* returns zone particle is in */
 vec3dint GetZone(vec3d pos)
 {
     vec3dint zone;

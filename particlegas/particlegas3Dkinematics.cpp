@@ -12,7 +12,7 @@ Of each particle in the simulation
 
 
 
-// uses Van der Waals approximation 
+/* uses Van der Waals approximation */
 void UpdateParticleVelocities(PARTICLE** pArray, double r8, double r14)
 {
     vec3d f, u; // force vector and direction vector
@@ -32,7 +32,7 @@ void UpdateParticleVelocities(PARTICLE** pArray, double r8, double r14)
     }
 }
 
-// uses the leapfrog algorithm
+/* uses the leapfrog algorithm */
 void UpdateParticlePositions(PARTICLE** pArray)
 {
     for (int i = 0; i < N; i++)
@@ -41,7 +41,7 @@ void UpdateParticlePositions(PARTICLE** pArray)
     }
 }
 
-// checks to see if particles will leave box
+/* checks to see if particles will leave box */
 void FixParticlePosition(PARTICLE** pArray, double& momentum)
 {
     double nx, ny, nz;
