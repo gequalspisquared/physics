@@ -34,42 +34,51 @@ void UpdateParticleVelocities(PARTICLE** pArray, double r8, double r14)
 }
 
 /* uses the leapfrog algorithm */
-void UpdateParticlePositions(PARTICLE** pArray)
+void UpdateParticlePositions(PARTICLE** pArray, double& momentum)
 {
     for (int i = 0; i < N; i++)
     {
-        pArray[i]->s += pArray[i]->v * (dt / 2);
+        pArray[i]->s += pArray[i]->v * (dt / 2);\
+
+        vec3dint zone = GetZone(pArray[i]->s);
+        if (zone.i == 0 || zone.i == numZone - 1)
+            CheckParticlePosition(pArray[i], momentum);
+        if (zone.j == 0 || zone.j == numZone - 1)
+            CheckParticlePosition(pArray[i], momentum);
+        if (zone.k == 0 || zone.k == numZone - 1)
+            CheckParticlePosition(pArray[i], momentum);
     }
 }
 
 /* checks to see if particles will leave box */
-void FixParticlePosition(PARTICLE** pArray, double& momentum)
+void CheckParticlePosition(PARTICLE* particle, double& momentum)
 {
     double nx, ny, nz;
     for (int i = 0; i < N; i++)
     {
-        nx = dabs(pArray[i]->s.i + pArray[i]->v.i * dt);
-        ny = dabs(pArray[i]->s.j + pArray[i]->v.j * dt);
-        nz = dabs(pArray[i]->s.k + pArray[i]->v.k * dt);
+        nx = dabs(particle->s.i + particle->v.i * dt);
+        ny = dabs(particle->s.j + particle->v.j * dt);
+        nz = dabs(particle->s.k + particle->v.k * dt);
 
         if (nx > L / 2)
         {
-            pArray[i]->v.i *= -1;
-            momentum += dabs(pArray[i]->p().i) * 2;
+            particle->v.i *= -1;
+            momentum += dabs(particle->p().i) * 2;
         }
         if (ny > L / 2)
         {
-            pArray[i]->v.j *= -1;
-            momentum += dabs(pArray[i]->p().j) * 2;
+            particle->v.j *= -1;
+            momentum += dabs(particle->p().j) * 2;
         }
         if (nz > L / 2)
         {
-            pArray[i]->v.k *= -1;
-            momentum += dabs(pArray[i]->p().k) * 2;
+            particle->v.k *= -1;
+            momentum += dabs(particle->p().k) * 2;
         }
     }
 }
 
+/* calculates potential energy of the system */
 void CalculatePotential(PARTICLE** pArray, double r6, double r12, double& potential)
 {
     vec3d u; // direction vector
@@ -87,6 +96,7 @@ void CalculatePotential(PARTICLE** pArray, double r6, double r12, double& potent
     printf("pot = %f\n", potential);
 }
 
+/* initializes particles and gives them a random position and velocity */
 void InitializeParticlePositionsRandomly(PARTICLE** pArray, double m, double r, double initialv)
 {
     for (int i = 0; i < N; i++)

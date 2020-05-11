@@ -10,8 +10,8 @@ extern const float dt;
 
 // particlegas3Dkinematics
 void UpdateParticleVelocities(PARTICLE** pArray, double r8, double r14);
-void UpdateParticlePositions(PARTICLE** pArray);
-void FixParticlePosition(PARTICLE** pArray, double& momentum);
+void UpdateParticlePositions(PARTICLE** pArray, double& momentum);
+void CheckParticlePosition(PARTICLE* particle, double& momentum);
 void CalculatePotential(PARTICLE** pArray, double r6, double r12, double& potential);
 void InitializeParticlePositionsRandomly(PARTICLE** pArray, double m, double r, double initialv);
 

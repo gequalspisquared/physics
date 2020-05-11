@@ -41,7 +41,6 @@ int main()
     static const double r12 = r6 * r6;
     static const double r13 = r12 * r1;
     static const double r14 = r13 * r1;
-    static const int BoxesPerSide = 1;
 
     /* variables used by program (do not touch) */
     double momentum = 0, potential = 0;
@@ -62,10 +61,9 @@ int main()
         // }
         
         /* leapfrog algorithm */
-        UpdateParticlePositions(particles);
+        UpdateParticlePositions(particles, momentum);
         UpdateParticleVelocities(particles, r8, r14);
-        UpdateParticlePositions(particles);
-        FixParticlePosition(particles, momentum);
+        UpdateParticlePositions(particles, momentum);
         time += dt; tick++;
 
         if (tick % ticksPerInfoUpdate == 0)
