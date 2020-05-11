@@ -5,7 +5,8 @@ Created by Nick Crane
 */
 #pragma once
 
-#define univG 6.6743e-11
-#define chargeKe 8.9387551e9
-#define boltK 1.38064852e-23
-#define univR 8.3145
+#define UNIV_G 6.6743e-11
+#define CHARGE_KE 8.9387551e9
+#define BOLT_K 1.38064852e-23
+#define UNIV_R 8.3145
+#define PI 3.14159265
