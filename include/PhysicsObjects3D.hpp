@@ -37,7 +37,7 @@ public:
 
 class BODY : public PARTICLE 
 {
-    double mu = univG * m;
+    double mu = UNIV_G * m;
 };
 
 class CHARGEDPARTICLE : public PARTICLE
