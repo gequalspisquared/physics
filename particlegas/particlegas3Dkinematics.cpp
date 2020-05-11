@@ -9,6 +9,7 @@ Of each particle in the simulation
 */
 
 #include "../include/ParticleGas3D.hpp"
+#define RANDOM (double)rand()/RAND_MAX // used for initially placing particles
 
 
 
@@ -84,6 +85,18 @@ void CalculatePotential(PARTICLE** pArray, double r6, double r12, double& potent
         }
     }
     printf("pot = %f\n", potential);
+}
+
+void InitializeParticlePositionsRandomly(PARTICLE** pArray, double m, double r, double initialv)
+{
+    for (int i = 0; i < N; i++)
+    {
+        pArray[i] = new PARTICLE(
+            m, r, 
+            vec3d(RANDOM * L - L / 2, RANDOM * L - L / 2, RANDOM * L - L / 2),
+            vec3d((2 * RANDOM - 1) * initialv, (2 * RANDOM - 1) * initialv, (2 * RANDOM - 1) * initialv),
+            vec3d(0, 0, 0) );
+    }
 }
 
 

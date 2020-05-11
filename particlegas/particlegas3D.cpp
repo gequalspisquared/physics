@@ -14,13 +14,12 @@ Can be changed to include gravity
 #include <thread>
 #include "../include/ParticleGas3D.hpp"
 
-#define RUNANIM 1 // used to determine whether to run anim or not
-#define RANDOM (double)rand()/RAND_MAX // used for initial conditions
+#define RUNANIM 0 // used to determine whether to run anim or not
 
 /* const global paramters */
-const int N = 1000;
+const int N = 1;
 const int L = 100;
-const int numZone = 9;
+const int numZone = 100; // number of zones per side of box
 const float dt = 0.01f;
 
 int main() 
@@ -52,16 +51,9 @@ int main()
     PARTICLE** particles = new PARTICLE*[N] { 0 };
     // CUBE** cubes = new CUBE*[BoxesPerSide] { 0 };
 
-    for (int i = 0; i < N; i++)
-    {
-        particles[i] = new PARTICLE(
-            mass, radius, 
-            vec3d(RANDOM * L - L / 2, RANDOM * L - L / 2, RANDOM * L - L / 2),
-            vec3d((2 * RANDOM - 1) * initialv, (2 * RANDOM - 1) * initialv, (2 * RANDOM - 1) * initialv),
-            vec3d(0, 0, 0) );
-    }
+    InitializeParticlePositionsRandomly(particles, mass, radius, initialv);
 
-    while (true)
+    while (time < 10.0f)
     {
         // trying to implement std::async to thread the velocity update (most expensive function)
         // for (int i = 0; i < N - 1; i++)
@@ -78,9 +70,9 @@ int main()
 
         if (tick % ticksPerInfoUpdate == 0)
         {
-            CalculatePotential(particles, r6, r12, potential);
-            UpdateInfo(particles, ticksPerInfoUpdate, momentum, potential);
-            printf("!v = %f, %f, %f\n", particles[0]->v.i, particles[0]->v.j, particles[0]->v.k);
+            // CalculatePotential(particles, r6, r12, potential);
+            // UpdateInfo(particles, ticksPerInfoUpdate, momentum, potential);
+            // printf("!v = %f, %f, %f\n", particles[0]->v.i, particles[0]->v.j, particles[0]->v.k);
         }
 
 #if RUNANIM==1
